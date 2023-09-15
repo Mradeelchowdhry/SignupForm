@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+            input.valid{
+                border: 5px solid green;
+                color: green;
+            }
+            input.invalid{
+                border: 5px solid red;
+                color: red;
+            }
+        </style>
+</head>
+<body>
+    <div class="container">
+            <div class="row">
+                <div class="col-8 mx-auto">
+              <h1 class="text-center disply-">Sign Up</h1>
+              <hr>
+              <label for="username" class="mb-3"><b>username</b></label>
+              <input type="text" name="username" id="username" class="form-control" placeholder="username" required><br><br>
+
+              <label for="email"><b>Email</b></label>
+              <input type="text" name="email"  id="email" class="form-control" placeholder="username" required><br><br>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required><br><br>
+          
+
+              <div class="container">
+                <button type="button" class="cancelbtn">Cancel</button>
+                <button type="submit" class="signupbtn">Sign Up</button>
+              </div>
+              </div>
+            </div>
+          </form>
+          
+    </div>
+</body>
+<script>
+    const Regex={
+        username:/^[a-zA-Z0-9._]{5,16}$/g,
+        email:/^[^\s@]+@[^\s@]+\.[^\s@]+$/g,
+        password:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/
+    }
+
+    let Validate=(element,pattern)=>{
+        //console.log(pattern.test(element.value))
+        if(pattern.test(element.value)){
+           // console.log("valid")
+           element.classList.add("valid")
+           element.classList.remove("invalid")
+        }
+        else{
+           // console.log("invaild")
+           element.classList.add("invalid")
+           element.classList.remove("valid")
+        }
+    }
+    const inputs=document.querySelectorAll("input");
+    //console.log(input)
+    inputs.forEach(inp=>{
+        inp.addEventListener("keyup",(e)=>{
+            //console.log(e.target)
+            //console.log(e.target.attribute.id.value)
+            //console.log(regex[e.target.attribute.id.value])
+            Validate(e.target,Regex[e.target.attributes.id.value])
+
+        })
+    })
+</script>
+</html>
